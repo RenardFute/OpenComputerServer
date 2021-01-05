@@ -1,5 +1,7 @@
 import { makeStyles } from '@material-ui/core';
 import React from "react";
+import ButtonGroup from '@material-ui/core/ButtonGroup';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -15,7 +17,8 @@ const useStyles = makeStyles(() => ({
 declare var window: MyWindow;
 
 interface MyWindow extends Window {
-    refreshData(): void;
+    execLua<T>(index: number, code: string, ...args: any[]): Promise<T>;
+    execBash<T>(index: number, code: string, ...args: any[]): Promise<T>;
 }
 
 const IndexPage = () => {
@@ -25,6 +28,9 @@ const IndexPage = () => {
         <div>
             <div className={classes.root}>
                 <p>Hello World!</p>
+                <ButtonGroup>
+                    <Button onClick={() => console.log('Hello World!')}>Hello</Button>
+                </ButtonGroup>
             </div>
         </div>
     );
